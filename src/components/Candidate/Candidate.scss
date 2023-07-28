@@ -1,0 +1,25 @@
+.candidate {
+  margin: 0 1.5rem;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+
+  }
+
+  &__subtitle {
+    font-size: 0.8rem;
+  }
+
+  &__img {
+    margin-bottom: 0.8rem;
+    border-radius: 1rem;
+  }
+
+  &__vote-btn {
+    margin-top: 1rem;
+  }
+}

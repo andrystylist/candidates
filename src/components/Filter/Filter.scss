@@ -1,0 +1,46 @@
+.filter {
+  margin: 0 rem;
+
+  &__title {
+
+  }
+
+  &__form {
+    
+  }
+
+  &__fieldset {
+    padding: 1rem;
+    transition: border .25s ease-in;
+
+    &--selected-candidates {
+      border: 1px solid #000;
+      
+      &:hover {
+        border: 1px solid #646cff;
+      }
+    }
+
+    &--stats-format {
+      border: 1px solid #000;
+
+      &:hover {
+        border: 1px solid #646cff;
+      }
+    }
+  }
+
+  &__form-radio-label {
+    padding: 0 1rem;
+
+    input {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__form-check-label {
+    input {
+      margin-right: 0.5rem;
+    }
+  }
+}
