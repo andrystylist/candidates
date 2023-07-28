@@ -1,0 +1,25 @@
+.total-votes {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 1.8rem;
+  transition: border .25s ease-in;
+
+  &:hover {
+    border: 1px solid #646cff;
+  }
+
+  &__result {
+    font-size: 1.5rem;
+    padding: 1rem;
+    text-align: center
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    
+  }
+}

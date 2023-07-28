@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import CandidatesRM from './services/CandidatesRM'
+import ContextCandidates from './Context/ContextCandidates'
+import ListCandidates from './components/ListCandidates/ListCandidates'
+import TotalVotes from './components/TotalVotes/TotalVotes'
+import Filter from './components/Filter/Filter'
+import CandidatesStats from './components/CandidatesStats/CandidatesStats'
+import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [candidates, setCandidates] = useState([])
+  const [totalVotes, setTotalVotes] = useState(0)
+  const [statsFormat, setStatsFormat] = useState('P') // P ó T
+  const [allCandidateIds, setAllCandidateIds] = useState([])
+  const [selectedCandidates, setSelectedCandidates] = useState([])
+
+  useEffect(() => {
+    CandidatesRM.getCandidates().then((characters) => {
+      setCandidates(characters)
+      
+      // By default I'll show all the candidates stats
+      const allIds = characters.map((candidate) => candidate.id)
+      setAllCandidateIds(allIds)
+      setSelectedCandidates(allIds)
+    })
+  }, [])
+
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ContextCandidates.Provider
+        value={{
+          totalVotes,
+          setTotalVotes,
+          candidates,
+          setCandidates,
+          statsFormat,
+          setStatsFormat,
+          allCandidateIds,
+          selectedCandidates,
+          setSelectedCandidates,
+        }}
+      >
+        <ListCandidates />
+        <section className='app__dashboard'>
+          <Filter />
+          <section className='app__stats'>
+            <TotalVotes />
+            <CandidatesStats />
+          </section>
+        </section>
+      </ContextCandidates.Provider>
     </>
   )
 }
-
 export default App
